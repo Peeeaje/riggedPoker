@@ -11,7 +11,8 @@ public class Main {
 
         for (int i = 0; i < players.size(); i++) {
             Player player = players.get(i);
-            Dealer.dealCards(player, deck, 2);
+            Dealer dealer = new Dealer();
+            dealer.dealCards(player, 2);
             System.out
                     .println(player.name() + ": " + player.chips().amount() + " " + player.hand());
 

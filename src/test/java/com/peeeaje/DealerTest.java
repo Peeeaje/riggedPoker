@@ -9,8 +9,8 @@ class DealerTest {
     void testDealCards() {
 
         Player player = new Player("TestName", new Chips(100));
-        Deck deck = new Deck();
-        Dealer.dealCards(player, deck, 2);
+        Dealer dealer = new Dealer();
+        dealer.dealCards(player, 2);
 
         assertEquals(2, player.hand().numOfCards());
     }
