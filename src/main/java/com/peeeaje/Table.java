@@ -9,10 +9,10 @@ public class Table {
     private Board board = new Board();
     private List<Player> players = new ArrayList<>();
     private Dealer dealer = new Dealer();
-    private int dealerIndex = 0;
+    private int buttonIndex = 0;
     private int currentPlayerIndex = 0;
 
-    public Chips pot() {
+    public Pot pot() {
         return pot;
     }
 
@@ -28,8 +28,4 @@ public class Table {
         return players;
     }
 
-    public void addBetToPot() {
-        // sum the bet and the pot
-        pot.add(bet);
-    }
 }

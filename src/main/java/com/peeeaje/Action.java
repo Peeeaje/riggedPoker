@@ -1,5 +1,10 @@
 package com.peeeaje;
 
-public abstract class Action {
-    
+public class Action {
+    private Action() {
+    }
+
+    public static void bet(int betSize, Pot pot) {
+        pot.add(new Chips(betSize));
+    }
 }

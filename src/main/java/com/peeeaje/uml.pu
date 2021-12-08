@@ -1,0 +1,78 @@
+@startuml uml
+class Card {
+    - rank: String
+    - suit: String
+    + Card(rank, suit)
+}
+class Deck {
+    - List<Card> cards
+    + Deck()
+    + shuffle(): void
+    + pickCard(): Card
+    + newDeck(): void
+}
+class Hand {
+    - List<Card> cards
+    + Hand()
+    + add(Card): void
+    + getHandValue(): String
+}
+class Player {
+    - name: String
+    - hand: Hand
+    - chips: Chips
+    - action : Action
+    - boolean isActive
+    + Player(name: String, chips: Chips)
+    + bet(table: Table, amount: Chips): void
+    + raise(table: Table, amount: Chips): void
+    + call(table: Table): void
+    + fold(table: Table): void
+}
+
+class Action {
+    + bet(table: Table, amount: Chips): void
+    + raise(table: Table, amount: Chips): void
+    + call(table: Table): void
+    + fold(table: Table): void
+}
+
+class Dealer {
+    - Deck deck
+    + Dealer()
+    - dealCard(player: Player): void
+    - dealBoard(board: Board): void
+    + dealHands(players: List<Player>, numOfCards: int): void
+    + dealFlop(board: Board): void
+    + dealTurn(board: Board): void
+    + dealRiver(board: Board): void
+}
+class Pot {
+    - Chips potAmount
+    - Chips betAmount
+    + Pot()
+    + openPot(): void
+}
+class Table {
+    - Pot pot
+    - List<Player> players
+    - Board board
+    - Dealer dealer
+    - int currentPlayerIndex
+    - int buttonIndex
+}
+class Board {
+    - List<Card> cards
+    + Hand()
+    + add(Card): void
+    + getHandValue(): String
+}
+Deck o-- Card
+Hand o-- Card
+Player -- Action : Use >
+Player ..> Hand : Use >
+Pot ..> Blind
+Pot ..> Chips
+Dealer *.. Deck
+Dealer *.. Board
+@enduml

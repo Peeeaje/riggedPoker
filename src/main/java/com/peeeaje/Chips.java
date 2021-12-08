@@ -18,4 +18,8 @@ public class Chips {
     public void add(Chips chips) {
         this.amount += chips.amount;
     }
+
+    public void clear() {
+        this.amount = 0;
+    }
 }
