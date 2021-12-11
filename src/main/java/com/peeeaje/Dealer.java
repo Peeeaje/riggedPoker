@@ -15,7 +15,7 @@ public class Dealer {
 
     }
 
-    private void dealBoard(Board board) {
+    private void dealBoard(Cards board) {
         board.add(deck.pickCard());
 
     }
@@ -28,17 +28,17 @@ public class Dealer {
         }
     }
 
-    public void dealFlop(Board board) {
+    public void dealFlop(Cards board) {
         for (int i = 0; i < 3; i++) {
             dealBoard(board);
         }
     }
 
-    public void dealTurn(Board board) {
+    public void dealTurn(Cards board) {
         dealBoard(board);
     }
 
-    public void dealRiver(Board board) {
+    public void dealRiver(Cards board) {
         dealBoard(board);
     }
 

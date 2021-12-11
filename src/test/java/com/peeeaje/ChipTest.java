@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-class ChipsTest {
+class ChipTest {
     @Test
     void testAdd() {
-        Chips pot = new Chips(100);
-        pot.add(new Chips(50));
+        Chip pot = new Chip(100);
+        pot.add(new Chip(50));
         assertEquals(150, pot.amount());
     }
 }

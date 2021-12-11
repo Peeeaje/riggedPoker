@@ -13,14 +13,7 @@ public class Card {
     }
 
     public String value() {
-        return this.rank() + this.suit();
+        return this.rank + this.suit;
     }
 
-    public String suit() {
-        return this.suit;
-    }
-
-    public String rank() {
-        return this.rank;
-    }
 }

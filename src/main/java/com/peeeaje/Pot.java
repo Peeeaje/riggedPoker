@@ -2,35 +2,26 @@ package com.peeeaje;
 
 public class Pot {
     // TODO: シングルトンにすべき？
-    private Chips potAmount;
-    private Chips betAmount;
+    private Chip potSize;
 
     public Pot() {
-        potAmount = new Chips(0);
-        betAmount = new Chips(0);
+        potSize = new Chip(0);
     }
 
     public void openPot() {
-        potAmount.add(Blind.bigBlind());// TODO: SB/BBを払った時点でAIになった状態を考慮していない
-        potAmount.add(Blind.smallBlind());
+        Chip startingChip = new Chip(0);
+        startingChip.add(Blind.bigBlind());
+        startingChip.add(Blind.smallBlind());
 
+        this.potSize = startingChip;
+        // TODO: SB/BBを払った時点でAIになった状態を考慮していない
     }
 
-    public void add(Chips bet) {
-        betAmount.add(bet);
+    public void add(Chip bet) {
+        this.potSize.add(bet);
     }
 
-    public void sumBetAndPot() {
-        // sum the bet and the pot
-        potAmount.add(betAmount);
-        betAmount.clear();
-    }
-
-    public Chips potAmount() {
-        return potAmount;
-    }
-
-    public Chips betAmount() {
-        return betAmount;
+    public Chip potSize() {
+        return this.potSize;
     }
 }

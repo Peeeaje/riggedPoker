@@ -2,7 +2,7 @@
 class Card {
     - rank: String
     - suit: String
-    + Card(rank, suit)
+    + Card(rank: String, suit: String)
 }
 class Deck {
     - List<Card> cards
@@ -14,15 +14,14 @@ class Deck {
 class Hand {
     - List<Card> cards
     + Hand()
-    + add(Card): void
+    + add(card: Card): void
     + getHandValue(): String
 }
 class Player {
     - name: String
     - hand: Hand
-    - chips: Chips
-    - action : Action
-    - boolean isActive
+    - stack: Chips
+    - isActive: Boolean
     + Player(name: String, chips: Chips)
     + bet(table: Table, amount: Chips): void
     + raise(table: Table, amount: Chips): void
@@ -31,21 +30,21 @@ class Player {
 }
 
 class Action {
-    + bet(table: Table, amount: Chips): void
-    + raise(table: Table, amount: Chips): void
-    + call(table: Table): void
-    + fold(table: Table): void
+    + bet(state: ActionState, amount: Chips): void
+    ' + raise(state: ActionState, amount: Chips): void
+    ' + call(state: ActionState): void
+    + fold(state: ActionState): void
 }
 
 class Dealer {
     - Deck deck
     + Dealer()
     - dealCard(player: Player): void
-    - dealBoard(board: Board): void
+    - dealBoard(state: Gamestate): void
     + dealHands(players: List<Player>, numOfCards: int): void
-    + dealFlop(board: Board): void
-    + dealTurn(board: Board): void
-    + dealRiver(board: Board): void
+    + dealFlop(table: Table): void
+    + dealTurn(table: Table): void
+    + dealRiver(table: Table): void
 }
 class Pot {
     - Chips potAmount
@@ -53,26 +52,74 @@ class Pot {
     + Pot()
     + openPot(): void
 }
-class Table {
-    - Pot pot
-    - List<Player> players
-    - Board board
-    - Dealer dealer
-    - int currentPlayerIndex
-    - int buttonIndex
-}
+' class Game {
+'     - List<Player> players
+'     - Dealer dealer
+'     - ActionState actionState
+'     + setStartingHands(): void
+' }
 class Board {
     - List<Card> cards
     + Hand()
-    + add(Card): void
+    + add(card: Card): void
     + getHandValue(): String
 }
-Deck o-- Card
-Hand o-- Card
+class Blind {
+    {static} - int smallBlind
+    {static} - int bigBlind
+    {static} + setBlinds(sb: int, bb: int): void
+    {static} + reset() : void
+}
+class Chips {
+    - int amount
+    + Chips(amount: int)
+    + add(amount: int): void
+    + clear(): void
+    + amount(): int
+}
+
+class ActionState{
+    - int currentPlayerIndex
+    - int buttonIndex
+}
+
+class Table {
+    - List<Player> players
+    - GameState gameState
+}
+
+class GameState {
+    - Board board
+    - Deck deck
+    - Pot pot
+}
+
+class Main{
+    + playHand()
+    + setup()
+
+}
+
+' ..>  -> 依存、使用を表す、変数としてもたないが入力として与えられる
+' o-- ->左が右を変数としてもち、左が消えても右は消滅しない、aggregation
+' *-- -> 左が右を変数としてもち、左が消えると右も消滅する、Composition
+Deck *-- Card 
+Hand *-- Card
 Player -- Action : Use >
-Player ..> Hand : Use >
-Pot ..> Blind
-Pot ..> Chips
-Dealer *.. Deck
-Dealer *.. Board
+Player *-- Hand
+Action ..> ActionState
+Pot -- Blind
+Pot -- Chips
+Dealer ..> Table
+Dealer ..> Player
+Dealer ..> GameState
+Board *-- Card
+' Dealer *-- Deck
+GameState *-- Pot
+GameState *-- Board
+GameState *-- Deck
+Table *-- Player
+' Table *-- Dealer
+Table *-- GameState
+
 @enduml

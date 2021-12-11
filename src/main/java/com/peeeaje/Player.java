@@ -1,24 +1,26 @@
 package com.peeeaje;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
     // Playerの情報を制御するクラス
     private final String name;
-    private Hand hand;
-    private Chips chips;
-    private boolean isActive;
+    private Cards hand;
+    private Chip stack;
 
-    public Player(String name, Chips chips) {
-        this.hand = new Hand();
+    public Player(String name, Chip chips) {
+        this.hand = new Cards();
         this.name = name;
-        this.chips = chips;
-        this.isActive = false;
+        this.stack = chips;
     }
 
-    public Chips chips() {
-        return this.chips;
+    public Chip stack() {
+        return this.stack;
     }
 
-    public Hand hand() {
+    public Cards hand() {
+
         return this.hand;
     }
 
@@ -28,17 +30,31 @@ public class Player {
 
     public boolean isActive() {
         // プレイヤーがアクティブかどうかを管理するメソッド
-        if (this.hand.numOfCards() == 0) {
-            this.isActive = false;
-        } else {
-            this.isActive = true;
-        }
-        return this.isActive;
+        return (this.hand.numOfCards() != 0);
     }
 
-    public void Bet(int amount) {
+    public void killHand() {
+        // プレイヤーの手札を破棄するメソッド
+        this.hand = new Cards();
     }
 
-    public void Fold() {
+    public void bet(Chip betSize, Table table) {
+        Action.bet(betSize, table);
+    }
+
+    public void raise(Chip betSize, Table table) {
+        Action.bet(betSize, table);
+
+    }
+
+    public void call(Table table) {
+        Chip betSize = new Chip(table.actionState().largestBetSize().amount());
+        Action.bet(betSize, table);
+
+    }
+
+    public void fold(Table table) {
+        Action.fold(table);
+
     }
 }

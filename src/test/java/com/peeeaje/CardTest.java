@@ -30,8 +30,6 @@ class CardTest {
         for (String rank : LIST_RANK) {
             for (String suit : LIST_SUIT) {
                 Card card = new Card(rank, suit);
-                assertEquals(rank, card.rank());
-                assertEquals(suit, card.suit());
                 assertEquals(rank + suit, card.value());
             }
         }
