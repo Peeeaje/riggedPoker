@@ -42,4 +42,25 @@ class ActionStateTest {
                 table.actionState().largestBetSize().amount());
     }
 
+    @Test
+    void testQueue() {
+        Player player1 = new Player("player1", new Chip(1000));
+        Player player2 = new Player("player2", new Chip(1000));
+        Player player3 = new Player("player3", new Chip(1000));
+
+        Players players = new Players();
+        players.addPlayer(player1);
+        players.addPlayer(player2);
+        players.addPlayer(player3);
+
+        Table table = new Table(players);
+
+        assertEquals(0, table.actionState().finishedActionDeque().size());
+        assertEquals(3, table.actionState().actionQueue().size());
+
+        table.actionState().makeAction();
+        assertEquals(1, table.actionState().finishedActionDeque().size());
+        assertEquals(2, table.actionState().actionQueue().size());
+
+    }
 }

@@ -15,11 +15,11 @@ class DealerTest {
 
         Player player = new Player("TestName", new Chip(100));
         Dealer dealer = new Dealer();
-        List<Player> players = new ArrayList<>();
+        Players players = new Players();
 
-        players.add(player);
+        players.addPlayer(player);
+
         dealer.dealHands(players, 2);
-
         assertEquals(2, player.hand().numOfCards());
     }
 }

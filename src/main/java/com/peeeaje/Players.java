@@ -60,4 +60,8 @@ public class Players {
         this.currentPlayerIndex = this.indexOf(this.nextPlayer());
     }
 
+    public List<Player> playerList() {
+        return playerList;
+    }
+
 }

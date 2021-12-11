@@ -20,8 +20,8 @@ public class Dealer {
 
     }
 
-    public void dealHands(List<Player> players, int numberOfCards) {
-        for (Player player : players) {
+    public void dealHands(Players players, int numberOfCards) {
+        for (Player player : players.playerList()) {
             for (int i = 0; i < numberOfCards; i++) {
                 dealCard(player);
             }

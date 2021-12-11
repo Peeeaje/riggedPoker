@@ -10,13 +10,13 @@ import java.util.Map;
 import java.util.Queue;
 
 public class ActionState {
-    private Deque<List<Object>> actionQueue = new ArrayDeque<>();
-    private Deque<List<Object>> finishedActionDeque = new ArrayDeque<>();
+    private Deque<Integer> actionQueue = new ArrayDeque<>();
+    private Deque<Integer> finishedActionDeque = new ArrayDeque<>();
     private Map<Integer, Chip> paidChipsMap = new HashMap<>();
 
     public ActionState(int numOfPlayers) {
         for (int i = 0; i < numOfPlayers; i++) {
-            actionQueue.add(new ArrayList<>(Arrays.asList(i, new Chip(0))));
+            actionQueue.add(i);
             setPaidChipsOf(i, new Chip(0));
         }
     }
@@ -27,6 +27,14 @@ public class ActionState {
             sum += value.amount();
         }
         return (sum != 0);
+    }
+
+    public Deque<Integer> finishedActionDeque() {
+        return finishedActionDeque;
+    }
+
+    public Deque<Integer> actionQueue() {
+        return actionQueue;
     }
 
     public void setPaidChipsOf(int position, Chip betSize) {
@@ -47,15 +55,19 @@ public class ActionState {
         return new Chip(largestBetSize);
     }
 
-    public void logAction(int position, Chip betSize) {
-        actionQueue.add(new ArrayList<>(Arrays.asList(position, betSize)));
-    }
-
-    public void finishAction() {
-        actionQueue.remove();
+    public void makeAction() {
+        // actionQueueからplayerをpop、finishedActionDequeにadd
+        finishedActionDeque.add(actionQueue.pop());
     }
 
     public void openAction() {
+        // finishedActionDequeをactionQueueに追加
+        for (int i = 0; i < this.finishedActionDeque.size(); i++) {
+            this.actionQueue.add(this.finishedActionDeque.remove());
+        }
+    }
 
+    public boolean isAllPlayersFinished() {
+        return this.actionQueue.isEmpty();
     }
 }
