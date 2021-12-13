@@ -17,6 +17,10 @@ public class Pot {
         // TODO: SB/BBを払った時点でAIになった状態を考慮していない
     }
 
+    public int amount() {
+        return potSize.amount();
+    }
+
     public void add(Chip bet) {
         this.potSize.add(bet);
     }

@@ -32,6 +32,10 @@ public class GameState {
         return turnState;
     }
 
+    public boolean isAllPlayersFinished() {
+        return turnState.lenOfToDoDeque() == 0;
+    }
+
     public void updateGameStateWhenRaiseOrBet(Chip betSize) {
         int currentPlayerIndex = turnState.getCurrentPlayerIndex(); // TODO: actionstateの更新をもう少しスマートにできないか
         betState.addPaidChipsOf(currentPlayerIndex, betSize);
@@ -56,6 +60,7 @@ public class GameState {
     }
 
     public Chip payingChip(Chip betSize) {
+        // calculate extra chips that the player need to pay
         int currentPlayerIndex = turnState.getCurrentPlayerIndex();
         Chip payingChip = betSize;
         Chip paidChip = betState.getPaidChipsOf(currentPlayerIndex);
@@ -63,4 +68,26 @@ public class GameState {
         payingChip.subtract(paidChip);
         return payingChip;
     }
+
+    public void reset() {
+        betState.reset();
+        turnState.reset();
+        table.reset();
+    }
+
+    public String[] possibleAction() {
+        if (betState.hasBetOccurred()) {
+            return new String[] { "raise", "call", "fold" };
+        }
+        return new String[] { "bet", "check" };
+    }
+
+    public int leftPlayerIndex() {
+        // index of player who is left when the others folded
+        return turnState.getFirstOfDoneDeque();
+    }
+
+    // public openPot() {}
+
+    // public void nextTurn
 }

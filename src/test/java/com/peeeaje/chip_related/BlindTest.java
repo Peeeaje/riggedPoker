@@ -31,8 +31,8 @@ class BlindTest {
     void testBBandSB() {
         Blind.reset();
         Blind.setBlinds(10, 20);
-        assertEquals(10, Blind.smallBlind());
-        assertEquals(20, Blind.bigBlind());
+        assertEquals(10, Blind.smallBlind().amount());
+        assertEquals(20, Blind.bigBlind().amount());
     }
 
 }

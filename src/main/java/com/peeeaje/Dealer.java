@@ -12,7 +12,7 @@ public class Dealer {
     }
 
     private void dealCard(Player player) {
-        player.hand().add(deck.pickCard());
+        player.getCard(deck.pickCard());
 
     }
 

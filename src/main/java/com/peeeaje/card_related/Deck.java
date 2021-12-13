@@ -3,7 +3,6 @@ package com.peeeaje.card_related;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Deck {
     private List<Card> cards;
@@ -18,10 +17,6 @@ public class Deck {
 
     public void shuffle() {
         Collections.shuffle(this.cards);
-    }
-
-    public void shuffle(Random seed) {
-        Collections.shuffle(this.cards, seed);
     }
 
     public Card pickCard() {

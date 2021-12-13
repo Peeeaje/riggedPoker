@@ -1,5 +1,6 @@
 package com.peeeaje;
 
+import com.peeeaje.card_related.Card;
 import com.peeeaje.card_related.Cards;
 import com.peeeaje.chip_related.Chip;
 
@@ -49,5 +50,9 @@ public class Player {
     public void killHand() {
         // プレイヤーの手札を破棄するメソッド
         this.hand = new Cards();
+    }
+
+    public void getCard(Card card) {
+        this.hand.add(card);
     }
 }

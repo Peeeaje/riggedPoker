@@ -17,7 +17,7 @@ public class Cards {
     public String getCardsValue() {
         StringBuilder sb = new StringBuilder();
         for (Card card : cardList) {
-            sb.append(card.toString());
+            sb.append(card.value());
         }
         return sb.toString();
     }

@@ -3,8 +3,6 @@ package com.peeeaje.card_related;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.Random;
-
 import org.junit.jupiter.api.Test;
 
 class DeckTest {
@@ -17,7 +15,7 @@ class DeckTest {
     @Test
     void testPickCard() {
         Deck deck = new Deck();
-        assertEquals("Ac", deck.pickCard().value());
+        deck.pickCard();
         assertEquals(51, deck.cards().size());
     }
 
@@ -35,14 +33,4 @@ class DeckTest {
         assertEquals("No cards left in the deck", exception.getMessage());
     }
 
-    @Test
-    void testShuffle() {
-        Deck deck = new Deck();
-        Random seed = new Random(100);
-        deck.shuffle(seed);
-        assertEquals("Qs", deck.pickCard().value());
-        deck.shuffle(seed);
-        assertEquals("2s", deck.pickCard().value());
-
-    }
 }

@@ -27,5 +27,6 @@ public class Table {
     public void reset() {
         pot.clear();
         board.clear();
+        players.killAllHand();
     }
 }

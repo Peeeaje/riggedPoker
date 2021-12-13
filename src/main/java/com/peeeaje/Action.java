@@ -40,14 +40,13 @@ public class Action {
 
     public static void fold(GameState gameState) {
         // スタックの変更、ポットの変更、actionStateの更新、現在のプレイヤの更新を行なっている
-        TurnState turnState = gameState.turnState();
         Table table = gameState.table();
         Player currentPlayer = gameState.currentPlayer();
         gameState.updateGameStateWhenFold();
         currentPlayer.killHand();
 
-        if (turnState.isAllPlayersFinished()) {
-            int winnerIndex = turnState.getFirstOfDoneDeque();
+        if (gameState.isAllPlayersFinished()) {
+            int winnerIndex = gameState.leftPlayerIndex();
             Player winner = table.players().getPlayer(winnerIndex);
             winnerTakesPot(winner, gameState);
         }

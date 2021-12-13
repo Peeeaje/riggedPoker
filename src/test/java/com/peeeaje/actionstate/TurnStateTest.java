@@ -1,12 +1,7 @@
 package com.peeeaje.actionstate;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.peeeaje.state.TurnState;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 
 class TurnStateTest {
@@ -14,11 +9,11 @@ class TurnStateTest {
     void testOmitFromToDo() {
         TurnState turnState = new TurnState(3, 0);
 
-        assertFalse(turnState.isAllPlayersFinished());
+        assertEquals(3, turnState.lenOfToDoDeque());
         for (int i = 0; i < 3; i++) {
             turnState.omitFromToDo();
         }
-        assertTrue(turnState.isAllPlayersFinished());
+        assertEquals(0, turnState.lenOfDoneDeque());
     }
 
     @Test

@@ -47,11 +47,4 @@ public class BetState {
         }
     }
 
-    public String[] possibleAction() {
-        if (hasBetOccurred()) {
-            return new String[] { "raise", "call", "fold" };
-        }
-        return new String[] { "bet", "check" };
-    }
-
 }
