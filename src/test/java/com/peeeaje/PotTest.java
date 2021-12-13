@@ -10,9 +10,9 @@ class PotTest {
     void testOpenPot() {
         Blind.setBlinds(100, 200);
         Pot pot = new Pot();
-        assertEquals(0, pot.potSize().amount());
+        assertEquals(true, pot.potSize().equals(new Chip(0)));
 
         pot.openPot();
-        assertEquals(300, pot.potSize().amount());
+        assertEquals(true, pot.potSize().equals(new Chip(300)));
     }
 }

@@ -1,8 +1,5 @@
 package com.peeeaje;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Player {
     // Playerの情報を制御するクラス
     private final String name;
@@ -36,25 +33,5 @@ public class Player {
     public void killHand() {
         // プレイヤーの手札を破棄するメソッド
         this.hand = new Cards();
-    }
-
-    public void bet(Chip betSize, Table table) {
-        Action.bet(betSize, table);
-    }
-
-    public void raise(Chip betSize, Table table) {
-        Action.bet(betSize, table);
-
-    }
-
-    public void call(Table table) {
-        Chip betSize = new Chip(table.actionState().largestBetSize().amount());
-        Action.bet(betSize, table);
-
-    }
-
-    public void fold(Table table) {
-        Action.fold(table);
-
     }
 }

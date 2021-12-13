@@ -1,8 +1,5 @@
 package com.peeeaje;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Table {
     private Pot pot = new Pot();
     private Cards board = new Cards();

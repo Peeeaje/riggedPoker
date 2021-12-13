@@ -64,4 +64,10 @@ public class Players {
         return playerList;
     }
 
+    public void killAllHand() {
+        for (Player player : playerList) {
+            player.killHand();
+        }
+    }
+
 }

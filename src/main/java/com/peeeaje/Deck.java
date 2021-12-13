@@ -9,7 +9,7 @@ public class Deck {
     private List<Card> cards;
 
     public Deck() {
-        newDeck();
+        newShuffledDeck();
     }
 
     public List<Card> cards() {
@@ -31,12 +31,13 @@ public class Deck {
         return this.cards.remove(0);
     }
 
-    public void newDeck() {
+    public void newShuffledDeck() {
         this.cards = new ArrayList<>();
         for (String rank : new String[] { "A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K" }) {
             for (String suit : new String[] { "c", "d", "h", "s" }) {
                 this.cards.add(new Card(rank, suit));
             }
         }
+        this.shuffle();
     }
 }

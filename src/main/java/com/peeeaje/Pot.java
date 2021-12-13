@@ -24,4 +24,8 @@ public class Pot {
     public Chip potSize() {
         return this.potSize;
     }
+
+    public void clear() {
+        this.potSize = new Chip(0);
+    }
 }

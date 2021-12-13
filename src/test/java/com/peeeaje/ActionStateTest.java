@@ -1,11 +1,7 @@
 package com.peeeaje;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +11,14 @@ class ActionStateTest {
         int numOfPlayers = 3;
         ActionState actionState = new ActionState(numOfPlayers);
         assertFalse(actionState.hasBetOccurred());
+
+    }
+
+    @Test
+    void testLargestBetSize() {
+        ActionState actionState = new ActionState(3);
+        actionState.addPaidChipsOf(0, new Chip(100));
+        assertEquals(true, actionState.largestBetSize().equals(new Chip(100)));
 
     }
 
@@ -31,15 +35,12 @@ class ActionStateTest {
 
         Table table = new Table(players);
 
-        assertEquals(new Chip(0).amount(),
-                table.actionState().getPaidChipsOf(0).amount());
+        assertEquals(true, table.actionState().getPaidChipsOf(0).equals(new Chip(0)));
 
-        table.actionState().setPaidChipsOf(0, new Chip(100));
-        assertEquals(new Chip(100).amount(),
-                table.actionState().getPaidChipsOf(0).amount());
+        table.actionState().addPaidChipsOf(0, new Chip(100));
+        assertEquals(true, table.actionState().getPaidChipsOf(0).equals(new Chip(100)));
+        assertEquals(true, table.actionState().largestBetSize().equals(new Chip(100)));
 
-        assertEquals(new Chip(100).amount(),
-                table.actionState().largestBetSize().amount());
     }
 
     @Test
@@ -58,7 +59,7 @@ class ActionStateTest {
         assertEquals(0, table.actionState().finishedActionDeque().size());
         assertEquals(3, table.actionState().actionQueue().size());
 
-        table.actionState().makeAction();
+        table.actionState().makeNonFoldAction();
         assertEquals(1, table.actionState().finishedActionDeque().size());
         assertEquals(2, table.actionState().actionQueue().size());
 

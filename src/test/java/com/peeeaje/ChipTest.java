@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 class ChipTest {
     @Test
     void testAdd() {
-        Chip pot = new Chip(100);
-        pot.add(new Chip(50));
-        assertEquals(150, pot.amount());
+        Chip chip = new Chip(100);
+        chip.add(new Chip(50));
+        assertEquals(true, chip.equals(new Chip(150)));
     }
 }

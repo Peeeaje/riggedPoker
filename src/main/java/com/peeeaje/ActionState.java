@@ -1,13 +1,9 @@
 package com.peeeaje;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 
 public class ActionState {
     private Deque<Integer> actionQueue = new ArrayDeque<>();
@@ -22,11 +18,11 @@ public class ActionState {
     }
 
     public boolean hasBetOccurred() {
-        int sum = 0;
+        Chip sum = new Chip(0);
         for (Chip value : paidChipsMap.values()) {
-            sum += value.amount();
+            sum.add(value);
         }
-        return (sum != 0);
+        return (!sum.equals(new Chip(0)));
     }
 
     public Deque<Integer> finishedActionDeque() {
@@ -37,8 +33,14 @@ public class ActionState {
         return actionQueue;
     }
 
-    public void setPaidChipsOf(int position, Chip betSize) {
+    private void setPaidChipsOf(int position, Chip betSize) {
         this.paidChipsMap.put(position, betSize);
+    }
+
+    public void addPaidChipsOf(int position, Chip betSize) {
+        Chip chip = paidChipsMap.get(position);
+        chip.add(betSize);
+        paidChipsMap.put(position, chip);
     }
 
     public Chip getPaidChipsOf(int position) {
@@ -46,18 +48,23 @@ public class ActionState {
     }
 
     public Chip largestBetSize() {
-        int largestBetSize = 0;
+        Chip largestBetSize = new Chip(0);
         for (Chip value : paidChipsMap.values()) {
-            if (value.amount() > largestBetSize) {
-                largestBetSize = value.amount();
+            if (value.isLargerThan(largestBetSize)) {
+                largestBetSize = value;
             }
         }
-        return new Chip(largestBetSize);
+        return largestBetSize;
     }
 
-    public void makeAction() {
+    public void makeNonFoldAction() {
         // actionQueueからplayerをpop、finishedActionDequeにadd
         finishedActionDeque.add(actionQueue.pop());
+    }
+
+    public void makeFoldAction() {
+        // actionQueueからplayerをpop、finishedActionDequeにaddはしない
+        actionQueue.pop();
     }
 
     public void openAction() {

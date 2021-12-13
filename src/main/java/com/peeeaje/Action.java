@@ -4,12 +4,12 @@ public class Action {
     private Action() {
     }
 
-    public String[] possibleAction(Table table) {
+    public static String[] possibleAction(Table table) {
         // 出せる選択肢を返す
         if (table.actionState().hasBetOccurred()) {
-            return new String[] { "Raise", "Call", "Fold" };
+            return new String[] { "raise", "call", "fold" };
         }
-        return new String[] { "Bet", "Check", "Fold" };
+        return new String[] { "bet", "check" };
     }
 
     public static void bet(Chip betSize, Table table) {
@@ -22,7 +22,7 @@ public class Action {
 
         increasePot(payingChip, table);
         subtractFromStack(payingChip, table);
-        updateActionState(betSize, table);
+        updateActionStateWhenNonFold(betSize, table);
         turnToNextPlayer(table);
     }
 
@@ -41,11 +41,21 @@ public class Action {
     }
 
     public static void fold(Table table) {
+        // スタックの変更、ポットの変更、actionStateの更新、現在のプレイヤの更新を行なっている
+
         Player currentPlayer = table.players().currentPlayer();
-        int currentPlayerIndex = table.players().currentPlayerIndex();
+        updateActionStateWhenFold(table);
+        turnToNextPlayer(table);
 
         currentPlayer.killHand();
-        table.actionState().setPaidChipsOf(currentPlayerIndex, new Chip(0));
+
+        if (table.actionState().isAllPlayersFinished()) {
+            int winnerIndex = table.actionState().finishedActionDeque().pop();
+            Player winner = table.players().getPlayer(winnerIndex);
+            Chip winningChip = table.pot().potSize();
+            winner.stack().add(winningChip);
+            table.pot().clear();
+        }
     }
 
     public static Chip payingChip(Chip betSize, Table table) {
@@ -60,16 +70,12 @@ public class Action {
 
     private static boolean isBet(Chip betSize, Table table) {
         Chip largestBetSize = table.actionState().largestBetSize();
-        return ((largestBetSize.amount() == 0) && (betSize.amount() > 0));
+        return ((largestBetSize.equals(new Chip(0))) && (betSize.isLargerThan(new Chip(0))));
     }
 
     private static boolean isRaise(Chip betSize, Table table) {
         Chip largestBetSize = table.actionState().largestBetSize();
-        return (betSize.amount() > largestBetSize.amount());
-    }
-
-    private static boolean isCall(Chip betSize, Table table) {
-        return ((!isRaise(betSize, table)) || (!isBet(betSize, table)));
+        return (betSize.isLargerThan(largestBetSize));
     }
 
     public static void subtractFromStack(Chip payingChip, Table table) {
@@ -81,11 +87,15 @@ public class Action {
         table.pot().add(payingChip);
     }
 
-    public static void updateActionState(Chip betSize, Table table) {
+    public static void updateActionStateWhenNonFold(Chip betSize, Table table) {
         int currentPlayerIndex = table.players().currentPlayerIndex();
 
-        table.actionState().setPaidChipsOf(currentPlayerIndex, betSize);
-        table.actionState().makeAction();
+        table.actionState().addPaidChipsOf(currentPlayerIndex, betSize);
+        table.actionState().makeNonFoldAction();
+    }
+
+    public static void updateActionStateWhenFold(Table table) {
+        table.actionState().makeFoldAction();
     }
 
     private static void turnToNextPlayer(Table table) {

@@ -1,7 +1,5 @@
 package com.peeeaje;
 
-import java.util.List;
-
 public class Dealer {
     private Deck deck;
 
@@ -17,7 +15,10 @@ public class Dealer {
 
     private void dealBoard(Cards board) {
         board.add(deck.pickCard());
+    }
 
+    public void prepareDeck() {
+        deck.newShuffledDeck();
     }
 
     public void dealHands(Players players, int numberOfCards) {

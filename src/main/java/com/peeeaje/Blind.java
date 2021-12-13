@@ -8,14 +8,14 @@ public class Blind {
     }
 
     public static Chip smallBlind() {
-        if (smallBlind.amount() == 0) {
+        if (smallBlind.equals(new Chip(0))) {
             throw new IllegalStateException("Small blind has not been set");
         }
         return smallBlind;
     }
 
     public static Chip bigBlind() {
-        if (bigBlind.amount() == 0) {
+        if (bigBlind.equals(new Chip(0))) {
             throw new IllegalStateException("Big blind has not been set");
         }
         return bigBlind;
