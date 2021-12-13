@@ -1,5 +1,8 @@
 package com.peeeaje;
 
+import com.peeeaje.card_related.Cards;
+import com.peeeaje.card_related.Deck;
+
 public class Dealer {
     private Deck deck;
 

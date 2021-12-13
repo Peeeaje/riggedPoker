@@ -5,11 +5,9 @@ import java.util.List;
 
 public class Players {
     private List<Player> playerList;
-    private int currentPlayerIndex;
 
     public Players() {
         this.playerList = new ArrayList<>();
-        this.currentPlayerIndex = 0;
     }
 
     public void addPlayer(Player player) {
@@ -24,25 +22,8 @@ public class Players {
         return playerList.indexOf(player);
     }
 
-    public int currentPlayerIndex() {
-        return currentPlayerIndex;
-    }
-
     public Player getPlayer(int index) {
         return playerList.get(index);
-    }
-
-    public Player currentPlayer() {
-        return playerList.get(currentPlayerIndex);
-    }
-
-    public int nextPlayerIndexInActivePlayers() {
-        return (this.activePlayers().indexOf(this.currentPlayer()) + 1)
-                % (this.activePlayers().numOfPlayers());
-    }
-
-    public Player nextPlayer() {
-        return this.activePlayers().playerList.get(this.nextPlayerIndexInActivePlayers());
     }
 
     public Players activePlayers() {
@@ -54,10 +35,6 @@ public class Players {
         }
 
         return activePlayers;
-    }
-
-    public void turnToNextPlayer() {
-        this.currentPlayerIndex = this.indexOf(this.nextPlayer());
     }
 
     public List<Player> playerList() {

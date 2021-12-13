@@ -1,16 +1,15 @@
 package com.peeeaje;
 
+import com.peeeaje.card_related.Cards;
+import com.peeeaje.chip_related.Pot;
+
 public class Table {
     private Pot pot = new Pot();
     private Cards board = new Cards();
     private Players players = new Players();
-    private Deck deck = new Deck();
-    private ActionState actionState;
-    private int buttonIndex = 0;
 
     public Table(Players players) {
         this.players = players;
-        this.actionState = new ActionState(players.numOfPlayers());
     }
 
     public Pot pot() {
@@ -25,11 +24,8 @@ public class Table {
         return players;
     }
 
-    public ActionState actionState() {
-        return actionState;
-    }
-
-    public Deck deck() {
-        return deck;
+    public void reset() {
+        pot.clear();
+        board.clear();
     }
 }

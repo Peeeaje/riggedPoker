@@ -1,14 +1,10 @@
 package com.peeeaje;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
+import com.peeeaje.chip_related.Chip;
 
 class DealerTest {
-    private static final Player List = null;
 
     @Test
     void testDealCards() {

@@ -2,6 +2,8 @@ package com.peeeaje;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.peeeaje.card_related.Deck;
+import com.peeeaje.chip_related.Chip;
 import org.junit.jupiter.api.Test;
 
 class PlayerTest {
