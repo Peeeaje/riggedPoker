@@ -22,8 +22,7 @@ public class TurnState {
         return toDoDeque.getFirst();
     }
 
-    public void passToDoToDone() {
-        // TODO: より良い命名
+    public void makeToDoDone() {
         // toDoDequeからplayerをpop、doneDequeにadd
         doneDeque.add(toDoDeque.pop());
     }

@@ -17,11 +17,11 @@ class TurnStateTest {
     }
 
     @Test
-    void testPassToDoToDone() {
+    void testMakeToDoToDone() {
         TurnState turnState = new TurnState(3, 0);
 
         assertEquals(0, turnState.getCurrentPlayerIndex());
-        turnState.passToDoToDone();
+        turnState.makeToDoDone();
         assertEquals(1, turnState.getCurrentPlayerIndex());
     }
 
@@ -30,11 +30,11 @@ class TurnStateTest {
         TurnState turnState = new TurnState(3, 0);
 
         for (int i = 0; i < 2; i++) {
-            turnState.passToDoToDone();
+            turnState.makeToDoDone();
         }
         assertEquals(2, turnState.getCurrentPlayerIndex());
         turnState.uniteDeque();
-        turnState.passToDoToDone();
+        turnState.makeToDoDone();
         assertEquals(0, turnState.getCurrentPlayerIndex());
     }
 }
