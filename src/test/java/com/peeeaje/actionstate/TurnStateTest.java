@@ -21,7 +21,7 @@ class TurnStateTest {
         TurnState turnState = new TurnState(3, 0);
 
         assertEquals(0, turnState.getCurrentPlayerIndex());
-        turnState.makeToDoDone();
+        turnState.makeNextToDoDone();
         assertEquals(1, turnState.getCurrentPlayerIndex());
     }
 
@@ -30,11 +30,11 @@ class TurnStateTest {
         TurnState turnState = new TurnState(3, 0);
 
         for (int i = 0; i < 2; i++) {
-            turnState.makeToDoDone();
+            turnState.makeNextToDoDone();
         }
         assertEquals(2, turnState.getCurrentPlayerIndex());
         turnState.uniteDeque();
-        turnState.makeToDoDone();
+        turnState.makeNextToDoDone();
         assertEquals(0, turnState.getCurrentPlayerIndex());
     }
 }

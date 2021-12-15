@@ -22,15 +22,6 @@ public class Cards {
         return sb.toString();
     }
 
-    public List<Card> cards() {
-        List<Card> passedCards = new ArrayList<>();
-
-        for (Card card : this.cardList) {
-            passedCards.add(card);
-        }
-        return passedCards;
-    }
-
     public void clear() {
         cardList.clear();
     }

@@ -40,7 +40,7 @@ public class GameState {
         int currentPlayerIndex = turnState.getCurrentPlayerIndex(); // TODO: actionstateの更新をもう少しスマートにできないか
         betState.addPaidChipsOf(currentPlayerIndex, betSize);
         turnState.uniteDeque();
-        turnState.makeToDoDone(); // TODO: unite -> passの順番でないといけないが、turnState側でそこについて管理できないだろうか
+        turnState.makeNextToDoDone(); // TODO: unite -> passの順番でないといけないが、turnState側でそこについて管理できないだろうか
     }
 
     public void updateGameStateWhenCall() {
@@ -48,11 +48,11 @@ public class GameState {
         Chip largestBet = betState.getLargestBet();
         Chip payingChip = payingChip(largestBet);
         betState.addPaidChipsOf(currentPlayerIndex, payingChip);
-        turnState.makeToDoDone();
+        turnState.makeNextToDoDone();
     }
 
     public void updateGameStateWhenCheck() {
-        turnState.makeToDoDone();
+        turnState.makeNextToDoDone();
     }
 
     public void updateGameStateWhenFold() {

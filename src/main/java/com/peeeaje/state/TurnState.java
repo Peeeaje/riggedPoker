@@ -22,7 +22,7 @@ public class TurnState {
         return toDoDeque.getFirst();
     }
 
-    public void makeToDoDone() {
+    public void makeNextToDoDone() {
         // toDoDequeからplayerをpop、doneDequeにadd
         doneDeque.add(toDoDeque.pop());
     }
