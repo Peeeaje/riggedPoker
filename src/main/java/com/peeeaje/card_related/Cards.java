@@ -26,6 +26,14 @@ public class Cards {
         cardList.clear();
     }
 
+    public List<Integer> getBitList() {
+        List<Integer> bitList = new ArrayList<>();
+        for (Card card : cardList) {
+            bitList.add(card.bit());
+        }
+        return bitList;
+    }
+
     public int numOfCards() {
         return cardList.size();
     }

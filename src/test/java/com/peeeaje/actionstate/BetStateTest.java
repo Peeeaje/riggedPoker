@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 class BetStateTest {
     @Test
     void testIfBetOccurred() {
-        int numOfPlayers = 3;
+        int numOfPlayers = 4;
         BetState betState = new BetState(numOfPlayers);
         assertFalse(betState.hasBetOccurred());
         betState.addPaidChipsOf(0, new Chip(100));
