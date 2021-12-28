@@ -14,6 +14,7 @@ public class Card {
     // r = rank of card (deuce=0,trey=1,four=2,five=3,...,ace=12)
     // cdhs = suit of card (bit turned on based on suit of card)
     // b = bit turned on depending on rank of card
+    // http://suffe.cool/poker/evaluator.html
 
     private String suit; // TODO: suit and rank variable can be altered by methods
     private String rank;
