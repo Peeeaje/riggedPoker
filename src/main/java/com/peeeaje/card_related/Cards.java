@@ -22,6 +22,10 @@ public class Cards {
         return sb.toString();
     }
 
+    public List<Card> getCards() {
+        return cardList;
+    }
+
     public void clear() {
         cardList.clear();
     }

@@ -3,6 +3,7 @@ package com.peeeaje;
 import java.util.Arrays;
 import java.util.Scanner;
 import com.peeeaje.chip_related.Chip;
+import com.peeeaje.evaluator.Evaluator;
 import com.peeeaje.state.GameState;
 
 public class Game {
@@ -13,6 +14,7 @@ public class Game {
     public static void main(String[] args) {
         setup();
         Table table = gameState.table();
+        Evaluator evaluator = new Evaluator();
         while (true) {
             prepareGame();
 

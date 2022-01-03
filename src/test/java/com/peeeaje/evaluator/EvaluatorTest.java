@@ -185,4 +185,20 @@ class EvaluatorTest {
         weakestHighCard.add(new Card("7", "s"));
         assertEquals(7462, evaluator.getStrength(weakestHighCard));
     }
+
+    @Test
+    void test7Cards() {
+        Evaluator evaluator = new Evaluator();
+        Cards board = new Cards();
+        board.add(new Card("A", "d"));
+        board.add(new Card("A", "s"));
+        board.add(new Card("K", "h"));
+        board.add(new Card("Q", "c"));
+        board.add(new Card("J", "s"));
+
+        Cards hand = new Cards();
+        hand.add(new Card("A", "c"));
+        hand.add(new Card("K", "d"));
+        assertEquals(167, evaluator.getStrength(board, hand));
+    }
 }

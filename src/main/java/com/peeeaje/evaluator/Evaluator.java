@@ -1,6 +1,10 @@
 package com.peeeaje.evaluator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import com.peeeaje.card_related.Card;
 import com.peeeaje.card_related.Cards;
 
 public class Evaluator {
@@ -31,12 +35,58 @@ public class Evaluator {
         }
     }
 
+    public int getStrength(Cards hand, Cards board) {
+        List<Cards> cardsList = get5CardsList(hand, board);
+
+        int strength = 10000;
+        for (Cards cards : cardsList) {
+            strength = Math.min(getStrength(cards), strength);
+        }
+        return strength;
+    }
+
     private boolean isFlush(Cards hand) { // TODO: tempよりもいい命名があれば変えたい
         int temp = 61440;
         for (int bit : hand.getBitList()) {
             temp = temp & bit;
         }
         return temp != 0;
+    }
+
+    private List<Cards> get5CardsList(Cards hand, Cards board) {
+        Cards cards = board;
+        for (Card card : hand.getCards()) {
+            cards.add(card);
+        }
+
+        List<Cards> cardsList = new ArrayList<>();
+        for (int i = 0; i < (Math.pow(2, 7)); i++) {
+            Cards fiveCards = new Cards();
+            int numOfCards = countNumOfCards(i);
+
+            if (numOfCards == 5) {
+                for (int j = 0; j < 7; j++) {
+                    if ((i >> j & 1) == 1) {
+                        Card activeCard = cards.getCards().get(j);
+                        fiveCards.add(activeCard);
+                    }
+                }
+                cardsList.add(fiveCards);
+            }
+        }
+        return cardsList;
+    }
+
+    // TODO: FlushHashCreator.javaからコピペしている、どこかいい置き場があればまとめてしまいたい
+    private static int countNumOfCards(int integer) {
+        String bitInteger = Integer.toBinaryString(integer);
+        int numOfCards = 0;
+        for (int j = 0; j < bitInteger.length(); j++) {
+            if (bitInteger.charAt(j) == '1') {
+                numOfCards++;
+            }
+        }
+        return numOfCards;
     }
 
     private static int unique5Index(Cards hand) {
