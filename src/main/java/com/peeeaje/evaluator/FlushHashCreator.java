@@ -16,7 +16,7 @@ public class FlushHashCreator {
     private static List<Integer> str8FlushBit = new ArrayList<>(
             Arrays.asList(7936, 3968, 1984, 992, 496, 248, 124, 62, 31, 4111));
 
-    public static Map<Integer, Integer> getFlushes() {
+    protected static Map<Integer, Integer> getFlushes() {
         return flushes;
     }
 

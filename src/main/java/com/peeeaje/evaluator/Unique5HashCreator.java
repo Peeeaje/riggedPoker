@@ -16,7 +16,7 @@ public class Unique5HashCreator {
     private static List<Integer> str8Bit = new ArrayList<>(
             Arrays.asList(7936, 3968, 1984, 992, 496, 248, 124, 62, 31, 4111));
 
-    public static Map<Integer, Integer> getUnique5() {
+    protected static Map<Integer, Integer> getUnique5() {
         return unique5;
     }
 
