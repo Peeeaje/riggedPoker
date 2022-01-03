@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PrimeProductListCreator {
-    private PrimeProductListCreator() {
+public class NonUnique5Creator {
+    private NonUnique5Creator() {
     }
 
     private static int[] nonUnique5 = new int[4888];
@@ -16,7 +16,7 @@ public class PrimeProductListCreator {
         setNonUnique5();
     }
 
-    public static int getStrength(int valueProduct) {
+    protected static int getStrength(int valueProduct) {
         int index = getIndexFromPrimeProductList(valueProduct);
         return nonUnique5[index];
     }

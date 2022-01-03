@@ -6,27 +6,27 @@ import org.junit.jupiter.api.Test;
 public class primeProductListCreatorTest {
     @Test
     void testQuadsStrength() {
-        assertEquals(11, primeProductListCreator.getStrength(41 * 41 * 41 * 41 * 37)); // AAAAK
-        assertEquals(166, primeProductListCreator.getStrength(2 * 2 * 2 * 2 * 3)); // 22223
+        assertEquals(11, NonUnique5Creator.getStrength(41 * 41 * 41 * 41 * 37)); // AAAAK
+        assertEquals(166, NonUnique5Creator.getStrength(2 * 2 * 2 * 2 * 3)); // 22223
     }
 
     void testFullHouseStrength() {
-        assertEquals(167, primeProductListCreator.getStrength(41 * 41 * 41 * 37 * 37)); // AAAKK
-        assertEquals(322, primeProductListCreator.getStrength(2 * 2 * 2 * 3 * 3)); // 22233
+        assertEquals(167, NonUnique5Creator.getStrength(41 * 41 * 41 * 37 * 37)); // AAAKK
+        assertEquals(322, NonUnique5Creator.getStrength(2 * 2 * 2 * 3 * 3)); // 22233
     }
 
     void testThreeOfAKindStrength() {
-        assertEquals(1610, primeProductListCreator.getStrength(41 * 41 * 41 * 37 * 31)); // AAAKQ
-        assertEquals(2467, primeProductListCreator.getStrength(2 * 2 * 2 * 3 * 5)); // 22234
+        assertEquals(1610, NonUnique5Creator.getStrength(41 * 41 * 41 * 37 * 31)); // AAAKQ
+        assertEquals(2467, NonUnique5Creator.getStrength(2 * 2 * 2 * 3 * 5)); // 22234
     }
 
     void testTwoPairStrength() {
-        assertEquals(2468, primeProductListCreator.getStrength(41 * 41 * 37 * 37 * 31)); // AAKKQ
-        assertEquals(3325, primeProductListCreator.getStrength(2 * 2 * 3 * 3 * 5)); // 22334
+        assertEquals(2468, NonUnique5Creator.getStrength(41 * 41 * 37 * 37 * 31)); // AAKKQ
+        assertEquals(3325, NonUnique5Creator.getStrength(2 * 2 * 3 * 3 * 5)); // 22334
     }
 
     void testOnePairStrength() {
-        assertEquals(3326, primeProductListCreator.getStrength(41 * 41 * 37 * 31 * 29)); // AAKQJ
-        assertEquals(6185, primeProductListCreator.getStrength(2 * 2 * 3 * 5 * 7)); // 22345
+        assertEquals(3326, NonUnique5Creator.getStrength(41 * 41 * 37 * 31 * 29)); // AAKQJ
+        assertEquals(6185, NonUnique5Creator.getStrength(2 * 2 * 3 * 5 * 7)); // 22345
     }
 }
