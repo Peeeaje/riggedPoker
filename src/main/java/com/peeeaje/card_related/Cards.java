@@ -10,6 +10,14 @@ public class Cards {
         this.cardList = new ArrayList<>();
     }
 
+    public Cards(String cardList) {
+        // "AsKsQsJsTs"のような入力を想定
+        this.cardList = new ArrayList<>();
+        for (int i = 0; i < cardList.length(); i += 2) {
+            this.cardList.add(new Card(cardList.substring(i, i + 1), cardList.substring(i + 1, i + 2)));
+        }
+    }
+
     public void add(Card card) {
         cardList.add(card);
     }
