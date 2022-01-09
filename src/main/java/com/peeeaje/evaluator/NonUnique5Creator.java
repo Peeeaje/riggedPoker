@@ -42,7 +42,7 @@ public class NonUnique5Creator {
         setOnePairNonUnique5();
     }
 
-    // TODO: 一連のコードをもっと綺麗には書けそうだが、現状速度的には問題ない
+    // TODO: 一連のコードをもっと綺麗には書けそうだが、現状速度的に大きな問題はなさそう
     private static void setQuadsPrimeProduct() {
         // iがquads, jはhigh card
         for (int i = 0; i < 13; i++) {
