@@ -34,7 +34,6 @@ public class Player {
     }
 
     public Cards hand() {
-
         return this.hand;
     }
 

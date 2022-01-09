@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.peeeaje.Player;
 import com.peeeaje.card_related.Card;
 import com.peeeaje.card_related.Cards;
 
@@ -43,6 +44,23 @@ public class Evaluator {
             strength = Math.min(getStrength(cards), strength);
         }
         return strength;
+    }
+
+    public Player judgeWinner(Cards board, Player player1, Player player2) {
+        // return player but if it's draw return null
+        Cards hand1 = player1.hand();
+        Cards hand2 = player2.hand();
+
+        int strength1 = getStrength(hand1, board);
+        int strength2 = getStrength(hand2, board);
+
+        if (strength1 > strength2) {
+            return player1;
+        } else if (strength1 < strength2) {
+            return player2;
+        } else {
+            return null;
+        }
     }
 
     private boolean isFlush(Cards hand) { // TODO: tempよりもいい命名があれば変えたい
